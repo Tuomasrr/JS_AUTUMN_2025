@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Workshop 1</title>
+	<script>
+
+
+		var firstname = "Tuomas";
+		var lastname = "Raunio";
+		alert(firstname);
+		document.write(lastname + " ");
+		alert(firstname + " " + lastname);
+		console.log(lastname + ", " + firstname);
+
+		var x = 15;
+		var order = 'Beer';
+		if (x > 50 && x < 60) {
+			document.write("<h1>He's over 50!</h1>");
+			console.log("He's over 50!");
+		} else if (x > 60) {
+			document.write("<p>He's too old!</p>");
+			console.log("He's too old!");
+		} else if (x <= 50 && x > 30) {
+			document.write("<strong>Middle aged man, who ordered some</strong> " + order);
+			console.log("Middle aged man, who ordered some" + order);
+		} else if (x < 30 && x > 18) {
+			document.write("<mark> Young and full of energy</mark>");
+			console.log("Young and full on energy");
+		} else if (x < 18) {
+			document.write("It seems you're bit underaged. <del> No beer for you </del>");
+			console.log("It seems you're bit underaged. No beer for you");
+		}
+
+		var arr = [];
+		for (var i = 0; i < 15; i++) {
+			var randomNumber = Math.floor(Math.random() * 100) + 1;
+			arr.push(randomNumber);
+			console.log("Randomized number: " + randomNumber);
+			document.write("<p>Randomized number: <strong>" + randomNumber + "</strong></p>");
+		}
+		console.log(arr);
+
+		function areYouOldEnough(age) {
+			if (age < 18) {
+				console.log("Age " + age + " is not enough. False.");
+				return false;
+			} else {
+				console.log("Age " + age + " is enough. True.");
+				alert("Age " + age + " is enough!");
+				return true;
+			}
+		}
+
+
+		var person = {
+			firstName: "John",
+			lastName: "Doe",
+			age: 50,
+			eyeColor: "blue",
+			adress: "Doestreet 22",
+			phone: "123123123",
+			printInfo: function () {
+				console.log("Name: " + this.firstName + " " + this.lastName);
+				console.log("Age: " + this.age);
+				console.log("Eye color: " + this.eyeColor);
+				console.log("Adress: " + this.adress);
+				console.log("Phone: " + this.phone);
+			}
+		};
+		person.printInfo();
+
+		var people = [
+			{ firstName: "Alice", lastName: "Smith", age: 30, eyeColor: "green" },
+			{ firstName: "Bob", lastName: "Johnson", age: 45, eyeColor: "brown" },
+			{ firstName: "Charlie", lastName: "Williams", age: 28, eyeColor: "hazel" },
+			{ firstName: "Diana", lastName: "Brown", age: 36, eyeColor: "blue" }
+		];
+		for (var person of people) {
+			console.log(person.firstName + " " + person.lastName);
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<h1>Workshop 1</h1>
+	<p> Lorem ipsum dolorem... </p>
+
+</body>
+
+</html>

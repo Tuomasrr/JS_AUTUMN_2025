@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First JS page</title>
+    <script src="javascript.js"></script>
+</head>
+<body>
+    <h1>Heading 1</h1>
+    <p>Paragraph 1</p>
+
+    <script>
+        myFirstFunction();
+        console.log("This is a console log message!")
+
+        var array = ["apple", "Banana", "cherry"];
+        for (var i=0; i<array.length; i++ ){
+            console.log(array[i]);
+        }
+
+        function person(name, age){
+            this.name = name;
+            this.age = age;
+        }
+
+        person.prototype.getFullName = function(){
+            return this.name + " " + this.age;
+        }
+
+        var person1 = new person("John", 25);
+        console.log(person1.getFullName());
+    </script>
+    
+</body>
+</html>

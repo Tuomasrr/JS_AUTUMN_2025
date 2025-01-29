@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="javascript.js"></script>
+</head>
+<body>
+    <h1>BOM and DOM examples</h1>
+    <p>Paragraph</p>
+    <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRnolDrUSX-NZBCKTjPLoliz1NLTFzQ2zZMM_Pz6x91A8mwz34r" alt="Auto">
+    
+    <script>
+        var myVariable = myFirstFunction(5);
+        console.log(myVariable);
+
+        myVariable ="Hello";
+        console.log(myVariable);
+
+        myVariable = 5 + 7 + " Hello";
+        console.log(myVariable);
+
+        myVariable = "Hello " + 5 + 7 ;
+        console.log(myVariable);
+
+        var array = ["MB", "GB", "TB"];
+
+        for (var i=0; i<array.length; i++){
+            console.log(array[i])
+        }
+
+        document.write("You are using " + navigator.appName + " " + navigator.appVersion + "<br/>");
+        
+    </script>
+</body>
+</html>
