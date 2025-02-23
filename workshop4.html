@@ -55,7 +55,7 @@
 		</label>
 		<br>
 		<label>
-			<input type="checkbox" name="CheckboxGroup1" value="3" id="CheckboxGroup1_2">
+			<input onchange="change()" type="checkbox" name="CheckboxGroup1" value="3" id="CheckboxGroup1_2">
 			<span id="surpise">Surprise</span>
 		</label>
 	</p>
@@ -78,17 +78,16 @@
 			choice on the pulldown menu below. Find appropriate images from the web.
 	</ul>
 	<p>Select a new car from the list.</p>
-	<select name="mySelect" id="mySelect" onchange="">
-		<option value="BMW">BMW
-		<option value="Audi">Audi
+	<select name="mySelect" id="mySelect" onchange="newCar()">
+		<option value="BMW" id="bmw">BMW
+		<option value="Audi" id="audi">Audi
 		<option value="Mercedes">Mercedes
 		<option value="Volvo">Volvo
 	</select>
 	<br>
 	<br>
-	<img alt="" onmouseover="" onmouseout="" style="left: 0px; opacity: 1;"
-		src="http://cdn.bmwblog.com/wp-content/uploads/2015/11/BMW-2-Series-Gran-Coupe-Rendering.jpg" width="400"
-		id="carimage" />
+	<img alt="Car" onmouseover="borderIn()" onmouseout="borderOut()" style="left: 0px; opacity: 1;" src="img/BMW.jpg"
+		width="400" id="carimage" />
 	<hr />
 	<h2>Exercise 4: Moving things around</h2>
 	<ul>
@@ -98,7 +97,7 @@
 			<ol>
 				<li><button onclick="changePosition()">Move!</button>Select the div with an id &quot;carimage&quot; and
 					move it 200px left and 500px down</li>
-				<li><button onclick="setInterval(function(){doMove();},1000); ">Animate</button> Write a funtion
+				<li><button onclick="setInterval(function(){doMove();},10); ">Animate</button> Write a funtion
 					doMove() which will move the image across the screen, or even better: back and forth on the screen.
 					The Interval required has already been added to the onclick -event of the list item.</li>
 				<li><button onclick="setInterval(function(){fadeOut();},250);">Fade out!</button> Wite a function
@@ -203,6 +202,117 @@
 			logo.style.width = ("30px");
 			newPara.appendChild(logo);
 		}
+
+		function hide() {
+			let joku = document.getElementById("me");
+			joku.style.display = "none";
+		}
+
+		function show() {
+			let joku1 = document.getElementById("me");
+			joku1.style.display = "block";
+		}
+
+		function change() {
+			let joku2 = document.getElementsByClassName("surprise");
+			for (let i = 0; i < joku2.length; i++) {
+				joku2[i].style.fontSize = "20px";
+			}
+		}
+
+		function newCar() {
+			let selectedCar = document.getElementById("mySelect").value;
+			alert("You selected " + selectedCar);
+			let carImage = document.getElementById("carimage");
+			let images = {
+				BMW: "img/BMW.jpg",
+				Audi: "img/Audi.jpg",
+				Mercedes: "img/Mercedes.jpg",
+				Volvo: "img/Volvo.jpg"
+			}
+			carImage.src = images[selectedCar];
+		}
+
+		function borderIn() {
+			let bordIn = document.getElementById("carimage");
+			bordIn.style.border = " 2px solid red";
+
+		}
+
+		function borderOut() {
+			let bordOut = document.getElementById("carimage");
+			bordOut.style.border = "none"
+		}
+
+		function changePosition() {
+			let move = document.getElementById("carimage");
+			move.style.left = "200px";
+			move.style.top = "500px";
+		}
+
+		var y = document.getElementById('carimage');
+		var direction = 1;
+		function doMove() {
+			var currentPosition = parseInt(y.style.left);
+			if (currentPosition >= window.innerWidth - y.width) {
+				direction = -1;
+			} else if (currentPosition <= 0) {
+				direction = 1;
+			}
+			y.style.left = (currentPosition + (10 * direction)) + 'px';
+		}
+
+		var opacity = 1.0;
+		function fadeOut() {
+			if (opacity > 0) {
+				opacity -= 0.05;
+				y.style.opacity = opacity;
+			}
+		}
+
+		function remove() {
+			y.style.display = "none";
+		}
+
+		window.onload = function addRow() {
+			var table = document.getElementById("data");
+			var newRow = table.insertRow();
+			var cell1 = newRow.insertCell(0);
+			var cell2 = newRow.insertCell(1);
+			var cell3 = newRow.insertCell(2);
+
+			cell1.innerHTML = "John Doe";
+			cell2.innerHTML = "Software Engineer";
+			cell3.innerHTML = "$120,000";
+		}
+
+		function insertRows() {
+			var name = document.getElementById("textfield").value;
+			var position = document.getElementById("textfield2").value;
+			var salary = document.getElementById("textfield3").value;
+
+			var table = document.getElementById("data").getElementsByTagName("tbody")[0];
+			var newRow = table.insertRow();
+
+			var cell1 = newRow.insertCell(0);
+			var cell2 = newRow.insertCell(1);
+			var cell3 = newRow.insertCell(2);
+
+			cell1.innerHTML = name;
+			cell2.innerHTML = position;
+			cell3.innerHTML = "$" + salary;
+
+			document.getElementById("textfield").value = "";
+			document.getElementById("textfield2").value = "";
+			document.getElementById("textfield3").value = "";
+		}
+
+
+
+
+
+
+
 
 
 

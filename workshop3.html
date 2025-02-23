@@ -18,7 +18,7 @@
     <h2>Exercise 1</h2>
     <p>Below you will see three buttons. Edit the source code and add an onClick-events to these buttons.</p>
     <p>
-        <button onclick="alert ('You clicked me!' +  new Date().toString())">Click me</button>
+        <button onclick="alert ('You clicked me!' + ' ' +  new Date().toString())">Click me</button>
         <button onclick="showTable()">Show table</button>
         <button onclick="getLocation()">Geolocation</button>
     </p>
@@ -171,28 +171,29 @@
             console.log("Longitude: " + lon);
         }
 
-        window.onload = function () {
-            document.getElementById("exHeading").onmouseover = function () {
-                console.log("Stepped over my mouse!");
-            }
-            document.getElementById("exHeading").onmouseover = function () {
-                console.log("Bye bye mouse!");
-            }
-        }
+
+        document.getElementById("exHeading").addEventListener("mouseover", function () {
+            console.log("Stepped over my mouse!");
+        });
+
+        document.getElementById("exHeading").addEventListener("mouseover", function () {
+            console.log("Bye bye mouse!");
+        });
 
         document.getElementById("textdata").addEventListener("focus", function () {
             document.getElementById("textdata").innerText = "Please fill in the form with proper data.";
             document.getElementById("textdata").style.backgroundColor = "yellow";
         });
 
-        let i = 0
+        
 
-        document.getElementById("textdata").addEventListener("keydown", function () {
-            document.getElementById("charcount").innerText = i++;
+        document.getElementById("textdata").addEventListener("input", function () {
+            let textLength = document.getElementById("textdata").value.length;
+            document.getElementById("charcount").innerText = textLength;
         });
 
         function aFunction() {
-            if (document.getElementById("textdata").value == 0) {
+            if (document.getElementById("textdata").value == "") {
                 alert("You forgot to fill Excercise 3 form!");
             }
         }
@@ -202,7 +203,7 @@
             let x = e.clientX;
             let y = e.clientY;
             let coor = "Coordinates: (" + x + "," + y + ")";
-            console.log (coor);
+            console.log(coor);
             document.getElementById("coords").innerHTML = coor;
         }
 
