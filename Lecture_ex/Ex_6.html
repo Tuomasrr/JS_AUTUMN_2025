@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>LocalStorage</h1>
+
+    <label for="fname">Firstname:</label><br>
+    <input type="text" id="fname" name="fname"><br>
+    <label for="lname">Lastname:</label><br>
+    <input type="text" id="lname" name="lname"><br>
+
+    <div id="storage_place"></div>
+
+    <p>
+        <button type="button" onclick="saveData()">Save</button>
+    </p>
+    <p>
+        <button type="button" onclick="showData()">Show</button>
+    </p>
+    <p>
+        <button type="button" onclick="deleteData()">Delete</button>
+    </p>
+
+    <label for="delNumber">Give a number:</label>
+    <input type="number" name="delNumber" id="delNumber">
+
+    <script>
+        if (!localStorage.getItem("nameList")) {
+            localStorage.setItem("nameList", JSON.stringify([]));
+        }
+
+        function saveData() {
+            // Always parse the stored value as JSON
+            var names = JSON.parse(localStorage.getItem("nameList")) || [];
+
+            var firstName = document.getElementById("fname").value.trim();
+            var lastName = document.getElementById("lname").value.trim();
+
+            var fullName = {
+                fname: firstName,
+                lname: lastName
+            };
+
+            names.push(fullName);
+
+            // Store back into localStorage as a JSON string
+            localStorage.setItem("nameList", JSON.stringify(names));
+
+            document.getElementById("fname").value = "";
+            document.getElementById("lname").value = "";
+
+        }
+
+        function showData(){
+            var jsonNames = JSON.parse(localStorage.getItem("nameList"));
+
+            var table = "<table border='1'>";
+            table += "<tr><th>Nro</th><th>First Name</th><th>Last Name </th></tr>";
+
+            for(var i=0; i<jsonNames.length; i++){
+                table += "<tr><td>"+(i)+"</td><td>"+jsonNames[i].fname+"</td><td>"+jsonNames[i].lname+"</td></tr>";
+            }
+
+            table += "</table>";
+            document.getElementById("storage_place").innerHTML = table;
+
+        }
+
+        function deleteData(){
+            var jsonNames = JSON.parse(localStorage.getItem("nameList"));
+            var delNum = document.getElementById("delNumber").value;
+
+            jsonNames.splice(delNum, 1);
+            localStorage.setItem("nameList", JSON.stringify(jsonNames));
+            showData();
+        }
+    </script>
+</body>
+
+</html>
